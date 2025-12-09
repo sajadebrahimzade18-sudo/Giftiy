@@ -21,11 +21,27 @@ body {
     color: #f1c40f; /* رنگ طلایی */
 }
 
+/* کد جدید و خفن */
 .coin-container img {
     width: 200px;
     height: 200px;
-    transition: transform 0.1s; /* انیمیشن نرم برای کلیک */
+    transition: all 0.2s ease; /* انیمیشن رو نرم‌تر کردیم */
     cursor: pointer;
+    
+    /* این خط عکس رو دایره کامل میکنه */
+    border-radius: 50%; 
+    
+    /* این خط یه سایه نرم و نئونی بهش میده */
+    box-shadow: 0 0 25px rgba(241, 196, 15, 0.6);
+    
+    /* این باعث میشه اگه عکست مربع کامل نبود، دفرمه نشه */
+    object-fit: cover;
+}
+
+/* افکت وقتی روی سکه کلیک میشه (کمی تغییرش دادم که جذاب‌تر بشه) */
+.coin-container img:active {
+    transform: scale(0.90); /* کوچیک شدن */
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.8); /* سایه موقع کلیک جمع‌تر و پررنگ‌تر میشه */
 }
 
 /* افکت وقتی روی سکه کلیک میشه */
@@ -36,4 +52,5 @@ body {
 #username {
     margin-top: 30px;
     color: #888;
+
 }
