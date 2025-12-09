@@ -1,26 +1,31 @@
-// وصل شدن به تلگرام
 const tg = window.Telegram.WebApp;
-
-// باز شدن مینی اپ به صورت کامل (Expand)
 tg.expand(); 
 
-let score = 0;
+// تغییر مهم: اول چک میکنیم ببینیم قبلا امتیازی داشته یا نه
+let score = localStorage.getItem('userScore') ? parseInt(localStorage.getItem('userScore')) : 0;
+
 const scoreElement = document.getElementById('score');
 const usernameElement = document.getElementById('username');
 
-// گرفتن اسم کاربر از تلگرام و نمایش آن
+// نمایش امتیاز ذخیره شده به محض ورود
+scoreElement.innerText = score;
+
 if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
     const user = tg.initDataUnsafe.user;
     usernameElement.innerText = `کاربر: ${user.first_name}`;
 } else {
-    usernameElement.innerText = "کاربر: در حال تست (بیرون تلگرام)";
+    usernameElement.innerText = "کاربر: مهمان";
 }
 
-// تابع کلیک کردن
 function clickCoin() {
-    score++; // یکی اضافه کن
-    scoreElement.innerText = score; // عدد رو روی صفحه آپدیت کن
+    score++;
+    scoreElement.innerText = score;
     
-    // لرزش گوشی موقع کلیک (Haptic Feedback) - این خیلی حس خوبی میده!
-    tg.HapticFeedback.impactOccurred('medium');
+    // تغییر مهم: هر بار کلیک کرد، عدد جدید رو ذخیره کن
+    localStorage.setItem('userScore', score);
+    
+    // ویبره گوشی (اگه روی گوشی باشه کار میکنه)
+    if(tg.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred('medium');
+    }
 }
