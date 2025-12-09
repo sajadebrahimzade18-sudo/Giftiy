@@ -1,0 +1,39 @@
+body {
+    background-color: #1c1c1e; /* رنگ پس زمینه تیره تلگرام */
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* جلوگیری از اسکرول */
+}
+
+.container {
+    text-align: center;
+}
+
+.score-board {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #f1c40f; /* رنگ طلایی */
+}
+
+.coin-container img {
+    width: 200px;
+    height: 200px;
+    transition: transform 0.1s; /* انیمیشن نرم برای کلیک */
+    cursor: pointer;
+}
+
+/* افکت وقتی روی سکه کلیک میشه */
+.coin-container img:active {
+    transform: scale(0.95);
+}
+
+#username {
+    margin-top: 30px;
+    color: #888;
+}
